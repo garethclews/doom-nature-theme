@@ -1,4 +1,4 @@
-;;; doom-ephemeral-theme.el --- ephemeral -*- no-byte-compile: t; -*-
+;;; doom-nature-theme.el --- nature -*- no-byte-compile: t; -*-
 ;;; Commentary:
 ;;; A doom theme inspired by https://github.com/elenapan/dotfiles
 
@@ -6,42 +6,42 @@
 (require 'doom-themes)
 
 ;;
-(defgroup doom-ephemeral-theme nil
+(defgroup doom-nature-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
 
-(defcustom doom-ephemeral-brighter-modeline nil
+(defcustom doom-nature-brighter-modeline nil
   "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-ephemeral-theme
+  :group 'doom-nature-theme
   :type 'boolean)
 
-(defcustom doom-ephemeral-brighter-comments nil
+(defcustom doom-nature-brighter-comments nil
   "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-ephemeral-theme
+  :group 'doom-nature-theme
   :type 'boolean)
 
-(defcustom doom-ephemeral-comment-bg doom-ephemeral-brighter-comments
+(defcustom doom-nature-comment-bg doom-nature-brighter-comments
   "If non-nil, comments will have a subtle, darker background. Enhancing their legibility."
-  :group 'doom-ephemeral-theme
+  :group 'doom-nature-theme
   :type 'boolean)
 
-(defcustom doom-ephemeral-padded-modeline doom-themes-padded-modeline
+(defcustom doom-nature-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to determine the exact padding."
-  :group 'doom-ephemeral-theme
+  :group 'doom-nature-theme
   :type '(choice integer boolean))
 
 (eval-and-compile
-  (defcustom doom-ephemeral-region-highlight t
+  (defcustom doom-nature-region-highlight t
     "Determines the selection highlight style. Can be 'frost, 'snowstorm or t
 (default)."
-    :group 'doom-ephemeral-theme
+    :group 'doom-nature-theme
     :type 'symbol))
 
 ;; colour 1: f48fb1
 ;; colour 2: 34feba
 
 ;;
-(def-doom-theme doom-ephemeral
+(def-doom-theme doom-nature
   "A dark theme inspired by Nord."
 
   ;; name        default   256       16
@@ -59,7 +59,7 @@
    (fg         '("#d6e9ff" "#d6e9ff" "white"        ))
    (fg-alt     base8                                 )
 
-   (grey       (doom-lighten bg 0.15                ))
+   (grey       (doom-lighten bg 0.1                 ))
    (red        '("#29b0cb" "#29b0cb" "red"          ))  ;; start colour 1
    (orange     '("#1f8498" "#1f8498" "brightred"    ))
    (green      '("#34ddfe" "#34ddfe" "green"        ))  ;; c1
@@ -78,7 +78,7 @@
    (nature-suc '("#3cc47c" "#3cc47c" "cyan"         ))
 
    ;; face categories -- required for all themes
-   (highlight      base6)
+   (highlight      magenta)
    (vertical-bar   base2)
    (selection      blue)
    (builtin        orange)
@@ -90,7 +90,7 @@
    (methods        magenta)
    (operators      base6)
    (type           dark-blue)
-   (strings        base7)
+   (strings        dark-cyan)
    (variables      magenta)
    (numbers        green)
    (region         (doom-darken base3 0.1))
@@ -103,10 +103,10 @@
 
    ;; custom categories
    (hidden     base3)
-   (-modeline-bright doom-ephemeral-brighter-modeline)
+   (-modeline-bright doom-nature-brighter-modeline)
    (-modeline-pad
-    (when doom-ephemeral-padded-modeline
-      (if (integerp doom-ephemeral-padded-modeline) doom-ephemeral-padded-modeline 4)))
+    (when doom-nature-padded-modeline
+      (if (integerp doom-nature-padded-modeline) doom-nature-padded-modeline 4)))
 
    (region-fg bg-alt)
 
@@ -120,14 +120,14 @@
 
   ;; --- extra faces ------------------------
   (((region &override) :foreground region-fg)
-   ((line-number &override) :foreground grey)
-   ((line-number-current-line &override) :foreground blue)
+   ((line-number &override) :foreground bg)
+   ((line-number-current-line &override) :foreground base6)
    ((paren-face-match &override) :foreground red :background base3 :weight 'ultra-bold)
    ((paren-face-mismatch &override) :foreground base3 :background red :weight 'ultra-bold)
    ((vimish-fold-overlay &override) :inherit 'font-lock-comment-face :background base3 :weight 'light)
    ((vimish-fold-fringe &override)  :foreground teal)
 
-   (font-lock-comment-face :inherit 'bold :foreground comments :background (if doom-ephemeral-comment-bg (doom-lighten bg 0.05)))
+   (font-lock-comment-face :inherit 'bold :foreground comments :background (if doom-nature-comment-bg (doom-lighten bg 0.05)))
    (font-lock-doc-face :inherit 'font-lock-comment-face :foreground doc-comments)
    (font-lock-builtin-face :inherit 'italic :foreground builtin)
    (font-lock-keyword-face :inherit 'bold :foreground keywords)
@@ -186,16 +186,16 @@
    (css-selector             :foreground red)
 
    ;; markdown-mode
-   (markdown-markup-face           :foreground red)
+   (markdown-markup-face           :foreground violet)
    (markdown-link-face             :foreground teal)
    (markdown-link-title-face       :foreground dark-cyan)
-   (markdown-header-face           :foreground red :inherit 'bold)
-   (markdown-header-delimiter-face :foreground red :inherit 'bold)
+   (markdown-header-face           :foreground yellow :inherit 'bold)
+   (markdown-header-delimiter-face :foreground orange :inherit 'bold)
    (markdown-language-keyword-face :foreground magenta :inherit 'italic)
    (markdown-markup-face           :foreground blue)
    (markdown-bold-face             :foreground blue)
    (markdown-table-face            :foreground fg :background bg)
-   ((markdown-code-face &override) :foreground teal :background base1)
+   ((markdown-code-face &override) :foreground teal :background base3)
 
    ;; outline (affects org-mode)
    ((outline-1 &override) :foreground blue :background nil)
@@ -239,7 +239,7 @@
 
    ;; --- extra variables ---------------------
    ;; basics
-   (link :foreground (doom-lighten base5 0.3) :inherit 'underline)
+   (link :foreground fg :inherit 'underline)
    (fringe :background bg-alt :foreground bg-alt)
 
    ;; evil
@@ -253,9 +253,10 @@
    (ivy-minibuffer-match-face-2 :foreground red        :weight 'bold)
 
    ;; company
-   (company-box-background      :background base0  :foreground fg )
+   (company-box-background      :background base1  :foreground fg )
    (company-tooltip-common      :foreground violet                )
    (company-tooltip-selection   :background base0  :foreground red)
   ))
 
-;;; doom-ephemeral-theme.el ends here
+(provide 'doom-nature-theme)
+;;; doom-nature-theme.el ends here
